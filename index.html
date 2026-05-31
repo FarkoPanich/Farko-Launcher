@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farko Launcher</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/vvPDXEf.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --fg: #ffffff;
+            --fg-muted: #888888;
+            --border: rgba(255, 255, 255, 0.08);
+            --card-bg: rgba(12, 12, 12, 0.45);
+            --accent: #ffffff;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: var(--font);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            -webkit-font-smoothing: antialiased;
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Background */
+        .hero-bg-container {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) brightness(0.12) contrast(1.2);
+            transform: scale(1.1);
+            animation: kinematic-zoom 30s infinite alternate ease-in-out;
+        }
+
+        @keyframes kinematic-zoom {
+            from { transform: scale(1.1) rotate(0deg); }
+            to { transform: scale(1.2) rotate(1deg); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 40%, transparent 0%, rgba(5, 5, 5, 0.98) 100%);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1100px;
+            width: 95%;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        header { text-align: center; margin-bottom: 20px; }
+        .title {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: -0.06em;
+            background: linear-gradient(180deg, #fff 40%, rgba(255,255,255,0.4) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            color: var(--fg-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            margin-top: 10px;
+            opacity: 0.6;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            width: 100%;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .preview-wrapper {
+            position: relative;
+            flex: 1.4;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(165deg, rgba(255,255,255,0.2) 0%, transparent 40%, rgba(255,255,255,0.05) 100%);
+            box-shadow: 0 40px 100px -20px rgba(0,0,0,0.9);
+            transform: perspective(1200px) rotateY(8deg) rotateX(1deg);
+            transition: all 0.8s cubic-bezier(0.2, 1, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .preview-wrapper:hover {
+            transform: perspective(1200px) rotateY(0deg) rotateX(0deg) scale(1.03);
+        }
+
+        .app-preview {
+            width: 100%;
+            height: auto;
+            max-height: 55vh;
+            object-fit: contain;
+            display: block;
+            border-radius: 15px;
+            filter: blur(6px) brightness(0.7) contrast(1.1);
+            transition: all 0.6s ease;
+        }
+
+        .preview-wrapper:hover .app-preview { filter: blur(0px) brightness(1.05) contrast(1); }
+
+        .preview-logo-overlay {
+            position: absolute;
+            z-index: 20;
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+        }
+
+        .overlay-logo {
+            width: 140px;
+            height: 140px;
+            opacity: 0.95;
+        }
+
+        .preview-wrapper:hover .preview-logo-overlay { transform: scale(0.7); opacity: 0; }
+
+        .card {
+            flex: 1;
+            background: var(--card-bg);
+            backdrop-filter: blur(50px);
+            -webkit-backdrop-filter: blur(50px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 45px;
+            text-align: left;
+            transform: perspective(1200px) rotateY(-15deg) rotateX(5deg);
+            transition: transform 0.5s ease;
+        }
+        .card:hover { transform: perspective(1200px) rotateY(-5deg) rotateX(2deg); }
+
+        .message {
+            font-size: 1.15rem;
+            line-height: 1.75;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            margin-bottom: 25px;
+        }
+
+        .disclaimer { font-size: 0.75rem; color: var(--fg-muted); font-style: italic; opacity: 0.5; }
+
+        .bottom-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            padding: 16px 45px;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.4s cubic-bezier(0.2, 1, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(255,255,255,0.2); }
+
+        .footer-info { display: flex; gap: 60px; }
+        .footer-info div { display: flex; flex-direction: column; gap: 5px; }
+        .footer-info span { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.25em; color: var(--fg-muted); }
+        .footer-info strong { font-size: 1rem; font-weight: 600; color: #fff; }
+
+        .fade-in { opacity: 0; animation: entrance-fade 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes entrance-fade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        @media (max-width: 1000px) {
+            body { overflow-y: auto; height: auto; }
+            .container { height: auto; padding: 60px 0; }
+            .content { flex-direction: column; gap: 40px; }
+            .bottom-bar { flex-direction: column; gap: 40px; text-align: center; }
+            .footer-info { flex-direction: column; gap: 25px; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-bg-container">
+        <img src="https://i.imgur.com/yFjaeSA.jpeg" alt="" class="hero-image">
+        <div class="hero-overlay"></div>
+    </div>
+
+    <main class="container">
+        <header class="fade-in delay-1">
+            <h1 class="title">Farko Launcher</h1>
+            <p class="subtitle">Stay connected. Keep playing.</p>
+        </header>
+
+        <section class="content fade-in delay-2">
+            <div class="preview-wrapper">
+                <img src="https://i.imgur.com/ydnA7Z5.png" alt="Farko Launcher Preview" class="app-preview">
+                <div class="preview-logo-overlay">
+                    <img src="https://i.imgur.com/vvPDXEf.png" alt="Farko Launcher Logo" class="overlay-logo">
+                </div>
+            </div>
+
+            <div class="card">
+                <p class="message">
+                    I built this launcher for the community. This project was created for players and server owners who don't have their own launcher, to ensure that everyone can continue their journey exactly where you left off.
+                </p>
+                <div class="divider"></div>
+                <p class="disclaimer">
+                    Farko Launcher is not affiliated with Rockstar Games, Take-Two Interactive, or any other third party.
+                </p>
+            </div>
+        </section>
+
+        <footer class="bottom-bar fade-in delay-3">
+            <div class="footer-info">
+                <div class="author">
+                    <span>Author</span>
+                    <strong>Farko</strong>
+                </div>
+                <div class="discord">
+                    <span>Discord</span>
+                    <strong>farkopanich</strong>
+                </div>
+                <div class="email">
+                    <span>Email</span>
+                    <strong>farkopanich@gmail.com</strong>
+                </div>
+            </div>
+            <a href="https://drive.google.com/file/d/1hqWnX0xNu2bd0GpvGJ7p8Ne8aYRq1qmw/view?usp=sharing" target="_blank" class="btn-primary">
+                Download
+            </a>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 85 || e.keyCode === 73)) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
