@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Farko Launcher — play RAGE:MP after the shutdown. Live master list, direct connect, offline client." />
+  <meta name="theme-color" content="#101010" />
+  <title>Farko Launcher</title>
+  <link rel="icon" type="image/png" href="img/0.png" />
+  <link rel="preload" as="image" href="img/1.png" fetchpriority="high" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=1" />
+</head>
+<body>
+  <header>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-inner">
+        <div class="nav-links" id="navLinks">
+          <button type="button" class="nav-link active" data-tab="overview">Overview</button>
+          <button type="button" class="nav-link" data-tab="masterlist">Masterlist</button>
+          <a class="nav-link nav-link-external" data-discord href="#" target="_blank" rel="noopener noreferrer">Discord</a>
+        </div>
+        <a class="logo-center" href="#overview" aria-label="Farko Launcher home">
+          <img src="img/0.png" alt="" width="32" height="32" fetchpriority="high" decoding="async" />
+        </a>
+        <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="panel-overview" class="page active page-scroll" aria-label="Overview">
+      <nav class="scroll-nav" id="scrollNav" aria-label="Sections">
+        <button type="button" class="scroll-nav-dot is-active" data-chapter="chapter-hero" aria-label="Home"></button>
+        <button type="button" class="scroll-nav-dot" data-chapter="chapter-list" aria-label="Master list"></button>
+        <button type="button" class="scroll-nav-dot" data-chapter="chapter-community" aria-label="Community"></button>
+        <button type="button" class="scroll-nav-dot" data-chapter="chapter-stats" aria-label="About"></button>
+      </nav>
+
+      <div class="scroll-chapters" id="scrollChapters">
+        <article class="scroll-chapter scroll-chapter--hero" id="chapter-hero">
+          <div class="hero-wrap">
+            <div class="hero-card">
+              <div class="hero-card-bg" id="heroParallax" role="presentation"></div>
+              <div class="hero-card-overlay" role="presentation"></div>
+              <div class="hero-card-grid">
+                <div class="hero-content">
+                  <h1 class="hero-title">Farko Launcher</h1>
+                  <p class="hero-subtitle">Stay connected. Keep playing.</p>
+                  <p class="lead">
+                    I built this launcher for the community. This project was created for players and server owners
+                    who don't have their own launcher, to ensure that everyone can continue their journey exactly
+                    where you left off.
+                  </p>
+                  <a class="btn btn-primary btn-lg" data-download href="#" download="FarkoLauncher-Setup.exe">Download</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="scroll-hint scroll-hint--down" aria-hidden="true">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+          </div>
+        </article>
+
+        <article class="scroll-chapter scroll-chapter--scene" id="chapter-list">
+          <div class="chapter-scene-bg" aria-hidden="true"></div>
+          <div class="chapter-scene-overlay chapter-scene-overlay--list" aria-hidden="true"></div>
+          <div class="chapter-inner chapter-inner--list">
+            <div class="list-scene">
+              <div class="preview-showcase preview-showcase--left reveal reveal-delay-1">
+                <div class="preview-showcase-stage" id="previewStage">
+                  <div class="preview-showcase-3d" id="preview3d">
+                    <div class="preview-showcase-frame">
+                      <img
+                        src="img/7.png"
+                        alt="Farko Launcher preview"
+                        width="960"
+                        height="600"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="list-content reveal reveal-delay-2">
+                <h2 class="list-title">Live Master List</h2>
+                <p class="list-subtitle">
+                  <span class="live-dot" aria-hidden="true"></span>
+                  <strong id="statServersList">—</strong> servers online
+                </p>
+                <p class="lead">
+                  You can now follow the Master List live and see which servers are currently listed on Farko Launcher.
+                </p>
+                <button type="button" class="btn btn-primary btn-lg" data-goto="masterlist">Open master list</button>
+              </div>
+            </div>
+          </div>
+          <div class="scroll-hint scroll-hint--up" aria-hidden="true">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 19V5M5 12l7-7 7 7" />
+            </svg>
+          </div>
+          <div class="scroll-hint scroll-hint--down" aria-hidden="true">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+          </div>
+        </article>
+
+        <article class="scroll-chapter scroll-chapter--scene" id="chapter-community">
+          <div class="chapter-scene-bg chapter-scene-bg--community" aria-hidden="true"></div>
+          <div class="chapter-scene-overlay chapter-scene-overlay--community" aria-hidden="true"></div>
+          <div class="chapter-inner chapter-inner--community">
+            <div class="community-scene">
+              <div class="community-content reveal reveal-delay-1">
+                <h2 class="list-title">Join Our Community</h2>
+                <p class="lead">
+                  Here you can get support, stay up to date with the latest updates, and add your server to Farko Launcher.
+                </p>
+                <a class="btn btn-primary btn-lg" data-discord href="#" target="_blank" rel="noopener noreferrer">Join Discord</a>
+              </div>
+              <div class="discord-showcase discord-showcase--right reveal reveal-delay-2">
+                <img
+                  src="img/6.png"
+                  alt="Discord community"
+                  width="512"
+                  height="512"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="scroll-hint scroll-hint--up" aria-hidden="true">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 19V5M5 12l7-7 7 7" />
+            </svg>
+          </div>
+          <div class="scroll-hint scroll-hint--down" aria-hidden="true">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+          </div>
+        </article>
+
+        <article class="scroll-chapter scroll-chapter--stats scroll-chapter--scene" id="chapter-stats">
+          <div class="chapter-scene-bg chapter-scene-bg--stats" aria-hidden="true"></div>
+          <div class="chapter-scene-overlay chapter-scene-overlay--stats" aria-hidden="true"></div>
+          <div class="chapter-inner chapter-inner--list">
+            <div class="list-scene list-scene--stats">
+              <div class="list-content reveal">
+                <h2 class="list-title">Farko</h2>
+                <p class="lead">
+                  I founded Farko Launcher and built this for the community so players and server owners can keep
+                  going exactly where they left off.
+                </p>
+              </div>
+              <footer class="chapter-end-footer reveal reveal-delay-1">
+                <div class="chapter-end-footer-inner">
+                  <p class="chapter-end-footer-legal">
+                    Farko Launcher is not affiliated with Rockstar Games, Take-Two Interactive, or RAGE:MP.
+                  </p>
+                  <p class="chapter-end-footer-copy">© Farko Launcher</p>
+                </div>
+              </footer>
+            </div>
+          </div>
+          <div class="scroll-hint scroll-hint--up" aria-hidden="true">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 19V5M5 12l7-7 7 7" />
+            </svg>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="panel-masterlist" class="page page-masterlist" aria-label="Master list">
+      <div class="masterlist-scene-bg" aria-hidden="true"></div>
+      <div class="masterlist-scene-overlay" aria-hidden="true"></div>
+      <div class="masterlist-page wrap">
+        <header class="masterlist-header">
+          <div class="masterlist-title">
+            <h1>Online Servers</h1>
+            <p>Farko Launcher MasterList</p>
+          </div>
+        </header>
+
+        <div class="masterlist-panel">
+          <div class="list-toolbar">
+            <div class="list-search">
+              <svg class="list-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <path d="m20 20-3.5-3.5" />
+              </svg>
+              <input
+                type="search"
+                class="list-search-input"
+                id="masterSearch"
+                placeholder="Search"
+                autocomplete="off"
+                spellcheck="false"
+                aria-label="Search servers"
+              />
+            </div>
+            <span class="list-count" id="masterCount" aria-live="polite">—</span>
+          </div>
+
+          <div class="list-header" aria-hidden="true">
+            <span>Server</span>
+            <span>Gamemode</span>
+          </div>
+
+          <div class="list-body" id="masterTableWrap">
+            <div class="empty-state">
+              <div class="loader" role="presentation"></div>
+              <p>Loading servers…</p>
+            </div>
+          </div>
+
+          <div class="list-empty-filter" id="masterListEmpty" hidden>
+            <p>No servers match your search.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="footer-social">
+        <a data-discord href="#" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.581.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z" />
+          </svg>
+        </a>
+      </div>
+      <p class="footer-legal">
+        Farko Launcher is not affiliated with Rockstar Games, Take-Two Interactive, or RAGE:MP.
+        Grand Theft Auto and Grand Theft Auto V are registered trademarks of Take-Two Interactive Software.
+      </p>
+      <span class="footer-copy">© Farko Launcher</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/app.js?v=1"></script>
+</body>
+</html>
