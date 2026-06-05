@@ -41,7 +41,8 @@ body.is-overview main {
   overflow: hidden;
 }
 
-body.is-overview .footer {
+body.is-overview .footer,
+body.is-masterlist .footer {
   display: none;
 }
 
