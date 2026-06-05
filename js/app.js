@@ -4,7 +4,7 @@
   const CONFIG = {
     masterListUrl: "https://raw.githubusercontent.com/FarkoPanich/Masterlist/main/servers.json",
     discordInvite: "https://discord.com/invite/VaB6zdEFBy",
-    downloadUrl: "",
+    downloadUrl: "https://github.com/FarkoPanich/Farko-Launcher/releases/download/v1.0.0/FarkoLauncher-Setup.exe",
     downloadFileName: "FarkoLauncher-Setup.exe",
     backgrounds: {
       hero: "img/1.png",
